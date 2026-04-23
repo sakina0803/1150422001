@@ -1,69 +1,626 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <title>我的可愛小天地</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Comic Sans MS", "Arial";
-      background: linear-gradient(to bottom, #ffe4ec, #fff0f5);
-      color: #ff6f91;
-      text-align: center;
-    }
-
-    .card {
-      background: white;
-      width: 300px;
-      margin: 50px auto;
-      padding: 20px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(255, 182, 193, 0.5);
-    }
-
-    img {
-      width: 120px;
-      border-radius: 50%;
-      border: 4px solid #ffd1dc;
-    }
-
-    h1 {
-      margin: 10px 0;
-    }
-
-    p {
-      font-size: 14px;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
-      background: #ffb6c1;
-      color: white;
-      border-radius: 20px;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background: #ff6f91;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✿ 個人介紹 ✿</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink-100: #fff0f5;
+    --pink-200: #ffd6e7;
+    --pink-300: #ffadd2;
+    --pink-400: #ff85c2;
+    --pink-500: #f759ab;
+    --peach: #ffebe0;
+    --peach-dark: #ffcba4;
+    --lavender: #f3e8ff;
+    --lavender-dark: #d8b4fe;
+    --mint: #e8fff5;
+    --mint-dark: #a7f3d0;
+    --yellow: #fffbeb;
+    --yellow-dark: #fde68a;
+    --text-dark: #5c3d5e;
+    --text-mid: #9b6fa0;
+    --text-light: #c9a0ce;
+    --white: #ffffff;
+    --shadow-pink: rgba(255, 133, 194, 0.2);
+  }
+ 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+  body {
+    font-family: 'Nunito', 'Noto Sans TC', sans-serif;
+    background: linear-gradient(135deg, #fff0f5 0%, #fce4ff 40%, #e8d5ff 70%, #d5eaff 100%);
+    min-height: 100vh;
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+ 
+  /* Floating deco */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(255,182,230,0.35) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -60px; left: -60px;
+    width: 250px; height: 250px;
+    background: radial-gradient(circle, rgba(196,168,255,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+ 
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+ 
+  /* ── Hero card ── */
+  .hero {
+    background: white;
+    border-radius: 32px;
+    padding: 48px 40px 40px;
+    text-align: center;
+    box-shadow: 0 8px 40px var(--shadow-pink), 0 2px 12px rgba(255,133,194,0.1);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 28px;
+    animation: fadeUp 0.7s ease both;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #ffb3d9, #d8b4fe, #93c5fd, #6ee7b7, #fde68a, #ffb3d9);
+    background-size: 200% 100%;
+    animation: shimmer 4s linear infinite;
+  }
+ 
+  @keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+ 
+  .avatar-wrap {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+  .avatar {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffd6e7, #e9d5ff, #bfdbfe);
+    border: 4px solid white;
+    box-shadow: 0 0 0 4px var(--pink-200), 0 8px 24px var(--shadow-pink);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 52px;
+    transition: transform 0.3s ease;
+    cursor: default;
+    overflow: hidden;
+  }
+  .avatar:hover { transform: scale(1.05) rotate(3deg); }
+  .avatar img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  .avatar-badge {
+    position: absolute;
+    bottom: 4px; right: 4px;
+    width: 28px; height: 28px;
+    background: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  }
+ 
+  .hero-name {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #f472b6, #a78bfa, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+  }
+  .hero-title {
+    font-size: 1rem;
+    color: var(--text-light);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .hero-bio {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-mid);
+    max-width: 500px;
+    margin: 0 auto 24px;
+  }
+ 
+  /* Tags */
+  .tags {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    justify-content: center;
+    margin-bottom: 28px;
+  }
+  .tag {
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .tag-pink  { background: #fff0f7; color: #e879a0; border: 1.5px solid #ffcce6; }
+  .tag-purple { background: #f5f0ff; color: #9b6bda; border: 1.5px solid #ddd0ff; }
+  .tag-blue  { background: #eff6ff; color: #5b9cf6; border: 1.5px solid #bfdbfe; }
+  .tag-mint  { background: #f0fdf9; color: #2fb995; border: 1.5px solid #a7f3d0; }
+  .tag-peach { background: #fff7ed; color: #f07c2e; border: 1.5px solid #fed7aa; }
+ 
+  /* Social links */
+  .socials {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  }
+  .social-btn {
+    display: flex; align-items: center; gap: 6px;
+    padding: 9px 18px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none; cursor: pointer;
+  }
+  .social-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+  .social-btn.ig   { background: linear-gradient(135deg, #ffd6e7, #e9d5ff); color: #c026a0; }
+  .social-btn.tw   { background: linear-gradient(135deg, #dbeafe, #e0f2fe); color: #2563eb; }
+  .social-btn.mail { background: linear-gradient(135deg, #fef9c3, #fed7aa); color: #d97706; }
+  .social-btn.web  { background: linear-gradient(135deg, #d1fae5, #cffafe); color: #0891b2; }
+ 
+  /* ── Section grid ── */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+    animation: fadeUp 0.7s 0.15s ease both;
+  }
+  @media (max-width: 580px) {
+    .grid-2 { grid-template-columns: 1fr; }
+    .hero { padding: 36px 24px 32px; }
+    .hero-name { font-size: 1.8rem; }
+  }
+ 
+  .card {
+    background: white;
+    border-radius: 24px;
+    padding: 28px 28px 24px;
+    box-shadow: 0 4px 20px rgba(255,133,194,0.12), 0 1px 6px rgba(0,0,0,0.04);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(255,133,194,0.2);
+  }
+ 
+  .card-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 18px;
+  }
+  .card-icon {
+    width: 38px; height: 38px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .icon-pink   { background: #fff0f5; }
+  .icon-purple { background: #f5f0ff; }
+  .icon-blue   { background: #eff6ff; }
+  .icon-mint   { background: #f0fdf9; }
+  .icon-peach  { background: #fff7ed; }
+  .icon-yellow { background: #fffbeb; }
+ 
+  .card-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text-dark);
+  }
+ 
+  /* Skill bars */
+  .skill-item { margin-bottom: 14px; }
+  .skill-item:last-child { margin-bottom: 0; }
+  .skill-label {
+    display: flex; justify-content: space-between;
+    font-size: 0.85rem; font-weight: 700;
+    color: var(--text-mid);
+    margin-bottom: 6px;
+  }
+  .skill-bar-bg {
+    height: 8px;
+    border-radius: 999px;
+    background: #f5f0ff;
+    overflow: hidden;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #f9a8d4, #c084fc);
+    transform-origin: left;
+    animation: barGrow 1s 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+  @keyframes barGrow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+  .bar-blue { background: linear-gradient(90deg, #93c5fd, #818cf8); }
+  .bar-mint { background: linear-gradient(90deg, #6ee7b7, #34d399); }
+  .bar-peach { background: linear-gradient(90deg, #fdba74, #fb923c); }
+ 
+  /* Hobby chips */
+  .hobbies { display: flex; flex-wrap: wrap; gap: 10px; }
+  .hobby-chip {
+    display: flex; align-items: center; gap: 6px;
+    padding: 8px 14px;
+    border-radius: 14px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: transform 0.2s ease;
+    cursor: default;
+  }
+  .hobby-chip:hover { transform: scale(1.05); }
+ 
+  /* Timeline */
+  .timeline { position: relative; padding-left: 20px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 5px; top: 6px; bottom: 6px;
+    width: 2px;
+    background: linear-gradient(180deg, #f9a8d4, #c084fc, #93c5fd);
+    border-radius: 2px;
+  }
+  .tl-item { position: relative; margin-bottom: 20px; }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-dot {
+    position: absolute;
+    left: -18px; top: 4px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f9a8d4, #c084fc);
+    box-shadow: 0 0 0 3px #fce7f3;
+  }
+  .tl-year {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--text-light);
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+  .tl-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 2px;
+  }
+  .tl-desc {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+ 
+  /* Quote card */
+  .quote-card {
+    background: linear-gradient(135deg, #fff0f5, #f3e8ff);
+    border-radius: 24px;
+    padding: 32px 36px;
+    text-align: center;
+    margin-bottom: 20px;
+    border: 1.5px solid #ffd6e7;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+  .quote-mark { font-size: 3rem; color: #f9a8d4; line-height: 1; margin-bottom: 8px; }
+  .quote-text {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.7;
+    font-style: italic;
+  }
+  .quote-author {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-weight: 600;
+  }
+ 
+  /* Full-width card */
+  .card-full {
+    background: white;
+    border-radius: 24px;
+    padding: 28px 32px;
+    box-shadow: 0 4px 20px rgba(255,133,194,0.12);
+    margin-bottom: 20px;
+    animation: fadeUp 0.7s 0.25s ease both;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card-full:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px rgba(255,133,194,0.18);
+  }
+ 
+  /* Contact row */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-top: 6px;
+  }
+  .contact-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: var(--pink-100);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-mid);
+    border: 1.5px solid var(--pink-200);
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .contact-item:hover { background: var(--pink-200); }
+  .contact-item span:first-child { font-size: 18px; }
+ 
+  /* Cute footer */
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-weight: 600;
+  }
+  .footer span { color: #f9a8d4; }
+ 
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+ 
+  /* Deco dots scattered */
+  .deco { position: fixed; pointer-events: none; z-index: 0; }
+  .deco-1 { top: 15%; left: 5%; width: 12px; height: 12px; border-radius: 50%; background: #ffb3d9; opacity: 0.5; animation: float1 6s ease-in-out infinite; }
+  .deco-2 { top: 40%; right: 4%; width: 8px; height: 8px; border-radius: 50%; background: #c084fc; opacity: 0.4; animation: float2 8s ease-in-out infinite; }
+  .deco-3 { bottom: 25%; left: 7%; width: 10px; height: 10px; border-radius: 50%; background: #93c5fd; opacity: 0.45; animation: float1 7s 1s ease-in-out infinite; }
+  .deco-4 { top: 60%; right: 8%; width: 6px; height: 6px; border-radius: 50%; background: #6ee7b7; opacity: 0.5; animation: float2 5s 2s ease-in-out infinite; }
+  @keyframes float1 {
+    0%,100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-14px) rotate(10deg); }
+  }
+  @keyframes float2 {
+    0%,100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-10px) rotate(-8deg); }
+  }
+ 
+  /* Star deco */
+  .star-deco {
+    position: fixed; pointer-events: none; z-index: 0;
+    font-size: 14px; opacity: 0.3;
+  }
+  .star-1 { top: 22%; right: 9%; animation: twinkle 3s ease-in-out infinite; }
+  .star-2 { top: 55%; left: 4%; animation: twinkle 4s 1s ease-in-out infinite; }
+  .star-3 { bottom: 18%; right: 12%; animation: twinkle 3.5s 0.5s ease-in-out infinite; }
+  @keyframes twinkle {
+    0%,100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.3); }
+  }
+</style>
 </head>
 <body>
-
-  <div class="card">
-    <img src="https://i.imgur.com/6VBx3io.png" alt="avatar">
-    <h1>鍾雁淳 ♡</h1>
-    <p>嗨嗨～我是個喜歡可愛事物的小夥伴 ✨<br>
-    喜歡打遊戲、寫程式、還有養電子雞 🐔💖</p>
-
-    <p>🎀 興趣：畫畫 / coding / 睡覺<br>
-       🍓 喜歡：粉紅色 / 甜點 / 小動物</p>
-
-    <a href="#" class="btn">聯絡我 💌</a>
+ 
+<!-- Deco elements -->
+<div class="deco deco-1"></div>
+<div class="deco deco-2"></div>
+<div class="deco deco-3"></div>
+<div class="deco deco-4"></div>
+<div class="star-deco star-1">✦</div>
+<div class="star-deco star-2">✧</div>
+<div class="star-deco star-3">✦</div>
+ 
+<div class="container">
+ 
+  <!-- Hero -->
+  <div class="hero">
+    <div class="avatar-wrap">
+      <div class="avatar">🌸</div>
+      <!-- 若要放照片，將上方 div 改為：
+      <div class="avatar"><img src="your-photo.jpg" alt="頭像"></div>
+      -->
+      <div class="avatar-badge">✨</div>
+    </div>
+ 
+    <h1 class="hero-name">sakina</h1>
+    <p class="hero-title">電競陪玩師</p>
+ 
+    <p class="hero-bio">
+      嗨！我是 sakina，來自 台中。喜歡 睡覺 和 小動物。<br>
+      歡迎來到我的小小世界，很高興認識你！🌷
+    </p>
+ 
+    <div class="tags">
+      <span class="tag tag-pink">🌸 LOL</span>
+      <span class="tag tag-purple">✨ VAL</span>
+      <span class="tag tag-blue">💫 TFT</span>
+      <span class="tag tag-mint">🌿 APEX</span>
+      <span class="tag tag-peach">🧁 DBD</span>
+    </div>
+ 
+    <div class="socials">
+      <a href="#" class="social-btn ig">📷 Instagram</a>
+      <a href="#" class="social-btn tw">🐦 Twitter</a>
+      <a href="#" class="social-btn mail">✉️ Email</a>
+      <a href="#" class="social-btn web">🌐 Website</a>
+    </div>
   </div>
-
+ 
+  <!-- Quote -->
+  <div class="quote-card">
+    <div class="quote-mark">"</div>
+    <p class="quote-text">菜又愛玩 🌟</p>
+    <p class="quote-author">— sakina</p>
+  </div>
+ 
+  <!-- 2-col grid: Skills + About -->
+  <div class="grid-2">
+ 
+    <!-- Skills card -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-purple">🎨</div>
+        <h2 class="card-title">技能 / 專長</h2>
+      </div>
+ 
+      <div class="skill-item">
+        <div class="skill-label"><span>特戰英豪</span><span>90%</span></div>
+        <div class="skill-bar-bg">
+          <div class="skill-bar-fill" style="width:90%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label"><span>聯盟戰旗</span><span>80%</span></div>
+        <div class="skill-bar-bg">
+          <div class="skill-bar-fill bar-blue" style="width:80%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label"><span>APEX</span><span>75%</span></div>
+        <div class="skill-bar-bg">
+          <div class="skill-bar-fill bar-mint" style="width:75%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label"><span>英雄聯盟</span><span>65%</span></div>
+        <div class="skill-bar-bg">
+          <div class="skill-bar-fill bar-peach" style="width:65%"></div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- Hobbies card -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-pink">💝</div>
+        <h2 class="card-title">興趣 / 喜好</h2>
+      </div>
+      <div class="hobbies">
+        <div class="hobby-chip" style="background:#fff0f5;color:#e879a0">🎵 音樂</div>
+        <div class="hobby-chip" style="background:#f5f0ff;color:#9b6bda">📚 日文</div>
+        <div class="hobby-chip" style="background:#eff6ff;color:#5b9cf6">🎮 遊戲</div>
+        <div class="hobby-chip" style="background:#fff7ed;color:#f07c2e">🍰 甜點</div>
+        <div class="hobby-chip" style="background:#fef9c3;color:#b45309">🐱 貓咪</div>
+        <div class="hobby-chip" style="background:#fff0f5;color:#e879a0">✈️ 旅行</div>
+      </div>
+    </div>
+ 
+  </div>
+ 
+  <!-- Timeline card (full width) -->
+  <div class="card-full">
+    <div class="card-header">
+      <div class="card-icon icon-blue">🗓️</div>
+      <h2 class="card-title">我的故事 / 經歷</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">20XX</div>
+        <div class="tl-title">重要里程碑一</div>
+        <div class="tl-desc">高中讀了觀光科，大學讀了資訊工程。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">20XX</div>
+        <div class="tl-title">重要里程碑二</div>
+        <div class="tl-desc">後來做了陪玩師，認識了各行各業各種人事物。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">現在</div>
+        <div class="tl-title">目前的我 🌸</div>
+        <div class="tl-desc">目前正在學習日文，希望以後能到日本生活。</div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- 2-col: Values + Contact -->
+  <div class="grid-2" style="animation-delay:0.3s">
+ 
+    <!-- Values -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-peach">🌟</div>
+        <h2 class="card-title">我的價值觀</h2>
+      </div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+        <li style="display:flex;align-items:flex-start;gap:8px;font-size:0.9rem;color:var(--text-mid);font-weight:600">
+          <span style="font-size:16px;flex-shrink:0">🌸</span> 保持好奇心，持續學習與成長
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:8px;font-size:0.9rem;color:var(--text-mid);font-weight:600">
+          <span style="font-size:16px;flex-shrink:0">💕</span> 真誠對待每一段關係
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:8px;font-size:0.9rem;color:var(--text-mid);font-weight:600">
+          <span style="font-size:16px;flex-shrink:0">✨</span> 享受生活中每個小確幸
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:8px;font-size:0.9rem;color:var(--text-mid);font-weight:600">
+          <span style="font-size:16px;flex-shrink:0">🌈</span> 在這裡填入你的價值觀
+        </li>
+      </ul>
+    </div>
+ 
+    <!-- Contact -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-mint">💌</div>
+        <h2 class="card-title">聯絡我</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <span>📧</span> yanchun870803@email.com
+        </div>
+        <div class="contact-item">
+          <span>📍</span> 台灣
+        </div>
+        <div class="contact-item">
+          <span>💬</span> Line: 0982122553
+        </div>
+        <div class="contact-item">
+          <span>🌐</span> yourwebsite.com
+        </div>
+      </div>
+    </div>
+ 
+  </div>
+ 
+  <!-- Footer -->
+  <div class="footer">
+    Made with <span>♥</span> · 歡迎來找我聊天 🌷
+  </div>
+ 
+</div>
 </body>
 </html>
