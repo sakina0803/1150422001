@@ -686,3 +686,36 @@
     </div>
 
   </div>
+   <!-- Hidden Music Player -->
+  <div style="position:fixed;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;top:0;left:0;">
+    <iframe id="bgMusic"
+      src=""
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      title="background music">
+    </iframe>
+  </div>
+
+  <!-- Music Hint -->
+  <div class="music-hint" id="musicHint">🎵 點擊任意處開始播放音樂</div>
+
+  <script>
+    let musicStarted = false;
+    document.addEventListener('click', function() {
+      if (!musicStarted) {
+        musicStarted = true;
+        document.getElementById('bgMusic').src =
+          'https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&controls=0&rel=0&modestbranding=1&mute=0';
+        const hint = document.getElementById('musicHint');
+        hint.style.opacity = '0';
+        setTimeout(() => hint.style.display = 'none', 600);
+      }
+    });
+  </script>
+
+  <div class="footer">
+    Made with <span>♥</span> · 歡迎來找我打遊戲 🤍
+  </div>
+
+</div>
+</body>
+</html>
